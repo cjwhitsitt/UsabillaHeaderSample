@@ -5,18 +5,18 @@ import android.content.Context;
 
 public class MyApplication extends Application {
 
-    private static Context context;
+    private static Application application;
     private static FeedbackManager feedbackManager;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = getApplicationContext();
+        application = this;
         feedbackManager = new FeedbackManager();
     }
 
     public static Context getContext() {
-        return context;
+        return application.getApplicationContext();
     }
 
     public static FeedbackManager getFeedbackManager() {

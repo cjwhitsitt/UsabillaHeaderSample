@@ -3,12 +3,13 @@ package com.example.usabillaheader;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class BaseUsabillaActivity extends AppCompatActivity implements FeedbackManager.FragmentCallback {
-    protected ContentFragment contentFragment = new ContentFragment();
+    protected TextView tvTitle;
     private ProgressBar progressBar;
 
     @Override
@@ -16,23 +17,21 @@ public class BaseUsabillaActivity extends AppCompatActivity implements FeedbackM
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base_usabilla);
 
+        tvTitle = findViewById(R.id.tv_title);
         progressBar = findViewById(R.id.pb_loading);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.overlay_content, contentFragment)
-                .commitNow();
-
         MyApplication.getFeedbackManager().loadForm(this);
     }
 
     @Override
     public void loadFragment(Fragment fragment) {
-        contentFragment.loadFragment(fragment);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content, fragment)
+                .commit();
         progressBar.setVisibility(View.GONE);
     }
 

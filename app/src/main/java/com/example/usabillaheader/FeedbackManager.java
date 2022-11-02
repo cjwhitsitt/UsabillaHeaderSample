@@ -57,16 +57,12 @@ public class FeedbackManager {
 
     private class ReadyCallback implements UsabillaReadyCallback {
         @Override
-        public void onUsabillaInitialized() {
-//            usabilla.preloadFeedbackForms(Collections.singletonList(formId));
-        }
+        public void onUsabillaInitialized() {}
     }
 
     private class FormCallback implements UsabillaFormCallback {
         @Override
-        public void formLoadFail() {
-
-        }
+        public void formLoadFail() {}
 
         @Override
         public void formLoadSuccess(@NonNull FormClient formClient) {
@@ -76,9 +72,7 @@ public class FeedbackManager {
         }
 
         @Override
-        public void mainButtonTextUpdated(@NonNull String s) {
-
-        }
+        public void mainButtonTextUpdated(@NonNull String s) {}
     }
 
 }
